@@ -5,9 +5,7 @@
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 import MinkowskiEngine as ME
-import numpy as np
 
 
 def assign_feats(sp, x):

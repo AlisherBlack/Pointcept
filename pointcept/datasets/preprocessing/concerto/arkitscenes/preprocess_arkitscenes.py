@@ -16,8 +16,6 @@ import shutil
 import open3d as o3d
 import cv2
 import glob
-import numpy as np
-import os
 import plyfile
 import multiprocessing as mp
 from rotation import convert_angle_axis_to_matrix3

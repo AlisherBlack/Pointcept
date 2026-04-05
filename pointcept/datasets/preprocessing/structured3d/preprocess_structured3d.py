@@ -9,7 +9,6 @@ import argparse
 import io
 import os
 import PIL
-from PIL import Image
 import cv2
 import zipfile
 import numpy as np

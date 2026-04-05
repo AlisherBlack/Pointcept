@@ -5,9 +5,9 @@
 
 
 import argparse
-import glob, os, sys
+import glob
+import os
 
-from SensorData import SensorData
 
 # params
 parser = argparse.ArgumentParser()

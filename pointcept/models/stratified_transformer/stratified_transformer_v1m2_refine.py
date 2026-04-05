@@ -462,9 +462,10 @@ class TransitionDown(nn.Module):
         self.pool = nn.MaxPool1d(k)
 
     def forward(self, feats, coords, offset):
-        new_offset, count = [int(offset[0].item() * self.ratio) + 1], int(
-            offset[0].item() * self.ratio
-        ) + 1
+        new_offset, count = (
+            [int(offset[0].item() * self.ratio) + 1],
+            int(offset[0].item() * self.ratio) + 1,
+        )
         for i in range(1, offset.shape[0]):
             count += ((offset[i].item() - offset[i - 1].item()) * self.ratio) + 1
             new_offset.append(count)
@@ -615,9 +616,9 @@ class StratifiedTransformer(nn.Module):
         stem=True,
     ):
         super().__init__()
-        assert (
-            KPConvLayer is not None and FastBatchNorm1d is not None
-        ), "Please make sure torch_points3d is installed"
+        assert KPConvLayer is not None and FastBatchNorm1d is not None, (
+            "Please make sure torch_points3d is installed"
+        )
         assert tp is not None, "Please make sure torch_points_kernels is installed"
         assert pointops is not None, "Please make sure pointops2 is installed"
         # stochastic depth decay rule

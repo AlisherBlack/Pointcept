@@ -43,9 +43,9 @@ class LayerScale(nn.Module):
 class Point3DRoPE(nn.Module):
     def __init__(self, head_dim, base=10000):
         super().__init__()
-        assert (
-            head_dim % 3 == 0
-        ), f"Head dimension must be divisible by 3 for 3D RoPE, {head_dim}"
+        assert head_dim % 3 == 0, (
+            f"Head dimension must be divisible by 3 for 3D RoPE, {head_dim}"
+        )
 
         self.head_dim = head_dim
         self.chunk_dim = head_dim // 3
@@ -153,15 +153,15 @@ class SerializedAttention(PointModule):
         self.enable_rpe = enable_rpe
         self.enable_flash = enable_flash
         if enable_flash:
-            assert (
-                enable_rpe is False
-            ), "Set enable_rpe to False when enable Flash Attention"
-            assert (
-                upcast_attention is False
-            ), "Set upcast_attention to False when enable Flash Attention"
-            assert (
-                upcast_softmax is False
-            ), "Set upcast_softmax to False when enable Flash Attention"
+            assert enable_rpe is False, (
+                "Set enable_rpe to False when enable Flash Attention"
+            )
+            assert upcast_attention is False, (
+                "Set upcast_attention to False when enable Flash Attention"
+            )
+            assert upcast_softmax is False, (
+                "Set upcast_softmax to False when enable Flash Attention"
+            )
             assert flash_attn is not None, "Make sure flash_attn is installed."
             self.patch_size = patch_size
             self.attn_drop = attn_drop

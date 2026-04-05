@@ -7,7 +7,6 @@ Author: Xiaoyang Wu (xiaoyang.wu.cs@gmail.com)
 Please cite our work if the code is helpful to you.
 """
 
-import os
 import logging
 from datetime import timedelta
 import torch
@@ -60,9 +59,9 @@ def launch(
     world_size = num_machines * num_gpus_per_machine
     if world_size > 1:
         if dist_url == "auto":
-            assert (
-                num_machines == 1
-            ), "dist_url=auto not supported in multi-machine jobs."
+            assert num_machines == 1, (
+                "dist_url=auto not supported in multi-machine jobs."
+            )
             port = _find_free_port()
             dist_url = f"tcp://127.0.0.1:{port}"
         if num_machines > 1 and dist_url.startswith("file://"):
@@ -98,9 +97,9 @@ def _distributed_worker(
     cfg,
     timeout=DEFAULT_TIMEOUT,
 ):
-    assert (
-        torch.cuda.is_available()
-    ), "cuda is not available. Please check your installation."
+    assert torch.cuda.is_available(), (
+        "cuda is not available. Please check your installation."
+    )
     global_rank = machine_rank * num_gpus_per_machine + local_rank
     try:
         dist.init_process_group(

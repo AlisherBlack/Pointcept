@@ -60,7 +60,7 @@ def generate_graspnet_splits(dataset_path, group_num=4):
                 if i + 4 > len(rgb_file_paths):
                     continue
 
-                chunk_key = f"{scene_name}_{i//group_num}"
+                chunk_key = f"{scene_name}_{i // group_num}"
                 split_dict[chunk_key] = {
                     "images": rgb_file_paths[i : i + group_num],
                     "depths": depth_file_paths[i : i + group_num],

@@ -27,11 +27,11 @@ def build_from_cfg(cfg, registry, default_args=None):
             )
     if not isinstance(registry, Registry):
         raise TypeError(
-            "registry must be an mmcv.Registry object, " f"but got {type(registry)}"
+            f"registry must be an mmcv.Registry object, but got {type(registry)}"
         )
     if not (isinstance(default_args, dict) or default_args is None):
         raise TypeError(
-            "default_args must be a dict or None, " f"but got {type(default_args)}"
+            f"default_args must be a dict or None, but got {type(default_args)}"
         )
 
     args = cfg.copy()
@@ -118,8 +118,7 @@ class Registry:
 
     def __repr__(self):
         format_str = (
-            self.__class__.__name__ + f"(name={self._name}, "
-            f"items={self._module_dict})"
+            self.__class__.__name__ + f"(name={self._name}, items={self._module_dict})"
         )
         return format_str
 
@@ -230,14 +229,14 @@ class Registry:
 
         assert isinstance(registry, Registry)
         assert registry.scope is not None
-        assert (
-            registry.scope not in self.children
-        ), f"scope {registry.scope} exists in {self.name} registry"
+        assert registry.scope not in self.children, (
+            f"scope {registry.scope} exists in {self.name} registry"
+        )
         self.children[registry.scope] = registry
 
     def _register_module(self, module_class, module_name=None, force=False):
         if not inspect.isclass(module_class):
-            raise TypeError("module must be a class, " f"but got {type(module_class)}")
+            raise TypeError(f"module must be a class, but got {type(module_class)}")
 
         if module_name is None:
             module_name = module_class.__name__
@@ -245,7 +244,7 @@ class Registry:
             module_name = [module_name]
         for name in module_name:
             if not force and name in self._module_dict:
-                raise KeyError(f"{name} is already registered " f"in {self.name}")
+                raise KeyError(f"{name} is already registered in {self.name}")
             self._module_dict[name] = module_class
 
     def deprecated_register_module(self, cls=None, force=False):

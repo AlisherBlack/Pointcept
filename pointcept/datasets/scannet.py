@@ -6,18 +6,12 @@ Please cite our work if the code is helpful to you.
 """
 
 import os
-import glob
 import numpy as np
 import torch
-from copy import deepcopy
-from torch.utils.data import Dataset
-from collections.abc import Sequence
 
-from pointcept.utils.logger import get_root_logger
 from pointcept.utils.cache import shared_dict
 from .builder import DATASETS
 from .defaults import DefaultDataset
-from .transform import Compose, TRANSFORMS
 from .preprocessing.scannet.meta_data.scannet200_constants import (
     VALID_CLASS_IDS_20,
     VALID_CLASS_IDS_200,

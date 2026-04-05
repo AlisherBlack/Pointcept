@@ -120,7 +120,6 @@ class MuonKIMI(torch.optim.Optimizer):
                 loss = closure()
 
         for group in self.param_groups:
-
             ############################
             #           Muon           #
             ############################

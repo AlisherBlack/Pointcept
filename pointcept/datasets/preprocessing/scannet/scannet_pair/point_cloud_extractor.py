@@ -4,7 +4,8 @@
 # LICENSE file in the root directory of this source tree.
 
 
-import glob, os
+import glob
+import os
 import numpy as np
 import cv2
 import torch

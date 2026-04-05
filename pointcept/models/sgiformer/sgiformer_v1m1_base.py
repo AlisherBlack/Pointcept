@@ -101,9 +101,9 @@ class PositionEmbeddingCoordsSine(nn.Module):
         # automatically handle remainder by assiging it to the first dim
         rems = num_channels - (ndim * xyz.shape[2])
 
-        assert (
-            ndim % 2 == 0
-        ), f"Cannot handle odd sized ndim={ndim} where num_channels={num_channels} and xyz={xyz.shape}"
+        assert ndim % 2 == 0, (
+            f"Cannot handle odd sized ndim={ndim} where num_channels={num_channels} and xyz={xyz.shape}"
+        )
 
         final_embeds = []
         prev_dim = 0

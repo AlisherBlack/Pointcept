@@ -94,7 +94,7 @@ def main():
         union_ += union
         target_ += target
 
-    logger.info(f"<<<<<<<<<<<<<<<<< Parsing 6-fold <<<<<<<<<<<<<<<<<")
+    logger.info("<<<<<<<<<<<<<<<<< Parsing 6-fold <<<<<<<<<<<<<<<<<")
     evaluation(intersection_, union_, target_, logger=logger)
 
 

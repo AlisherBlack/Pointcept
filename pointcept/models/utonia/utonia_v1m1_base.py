@@ -13,11 +13,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.distributed as dist
 import torch_scatter
-import torchvision.transforms
 from timm.layers import trunc_normal_
-from torch.nn.utils import weight_norm
-from transformers import AutoConfig, ViTModel, ViTConfig
-from transformers import AutoModel, AutoProcessor
+from transformers import AutoModel
 from copy import deepcopy
 
 import pointops

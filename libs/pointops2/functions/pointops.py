@@ -3,14 +3,11 @@ The part of attention operations is written by Xin Lai.
 Email: xinlai@cse.cuhk.edu.hk
 """
 
-from typing import Tuple
 
 import torch
 from torch.autograd import Function
-import torch.nn as nn
 
 import pointops2_cuda as pointops_cuda
-import time
 
 
 class FurthestSampling(Function):
@@ -1004,9 +1001,10 @@ def queryandgroup(
 def Divide2Patch(nsample, xyz, offset, return_offset=False, anchor_scale=None):
     # nsample: 16  xyz: (n, 3)  offset: (b)
     downsample_scale = anchor_scale or nsample
-    new_offset, count = [offset[0].item() // downsample_scale], offset[
-        0
-    ].item() // downsample_scale
+    new_offset, count = (
+        [offset[0].item() // downsample_scale],
+        offset[0].item() // downsample_scale,
+    )
     for i in range(1, offset.shape[0]):
         count += (offset[i].item() - offset[i - 1].item()) // downsample_scale
         new_offset.append(count)

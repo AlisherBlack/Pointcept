@@ -1,4 +1,5 @@
-import os, struct
+import os
+import struct
 import numpy as np
 import zlib
 import imageio

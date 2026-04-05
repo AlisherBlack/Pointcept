@@ -12,7 +12,6 @@ import glob
 import argparse
 import numpy as np
 import shutil
-import tqdm
 from pathlib import Path
 import multiprocessing as mp
 from concurrent.futures import ProcessPoolExecutor

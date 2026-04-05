@@ -7,7 +7,6 @@ Please cite our work if the code is helpful to you.
 
 import os
 import numpy as np
-import glob
 
 from pointcept.utils.cache import shared_dict
 

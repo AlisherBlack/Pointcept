@@ -6,7 +6,6 @@ Please cite our work if the code is helpful to you.
 """
 
 import os
-import shutil
 import argparse
 import numpy as np
 import trimesh

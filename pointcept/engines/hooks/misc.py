@@ -125,7 +125,6 @@ class InformationWriter(HookBase):
                     self.curr_iter,
                 )
             if self.trainer.cfg.enable_wandb:
-
                 wandb.log(
                     {"Iter": self.curr_iter, "params/lr": lr}, step=self.curr_iter
                 )
@@ -154,7 +153,6 @@ class InformationWriter(HookBase):
                 )
 
             if self.trainer.cfg.enable_wandb:
-
                 for key in self.model_output_keys:
                     wandb.log(
                         {

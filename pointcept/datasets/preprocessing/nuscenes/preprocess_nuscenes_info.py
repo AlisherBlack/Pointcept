@@ -519,7 +519,7 @@ if __name__ == "__main__":
     )
     config = parser.parse_args()
 
-    print(f"Loading nuScenes tables for version v1.0-trainval...")
+    print("Loading nuScenes tables for version v1.0-trainval...")
     nusc_trainval = NuScenes(
         version="v1.0-trainval", dataroot=config.dataset_root, verbose=False
     )
@@ -529,7 +529,7 @@ if __name__ == "__main__":
     print("exist scene num:", len(available_scenes_trainval))
     assert len(available_scenes_trainval) == len(nusc_trainval.scene) == 850
 
-    print(f"Loading nuScenes tables for version v1.0-test...")
+    print("Loading nuScenes tables for version v1.0-test...")
     nusc_test = NuScenes(
         version="v1.0-test", dataroot=config.dataset_root, verbose=False
     )
@@ -553,7 +553,7 @@ if __name__ == "__main__":
             for s in test_scenes
         ]
     )
-    print(f"Filling trainval information...")
+    print("Filling trainval information...")
     train_nusc_infos, val_nusc_infos = fill_trainval_infos(
         config.dataset_root,
         nusc_trainval,
@@ -562,7 +562,7 @@ if __name__ == "__main__":
         max_sweeps=config.max_sweeps,
         with_camera=config.with_camera,
     )
-    print(f"Filling test information...")
+    print("Filling test information...")
     test_nusc_infos, _ = fill_trainval_infos(
         config.dataset_root,
         nusc_test,
@@ -572,7 +572,7 @@ if __name__ == "__main__":
         with_camera=config.with_camera,
     )
 
-    print(f"Saving nuScenes information...")
+    print("Saving nuScenes information...")
     os.makedirs(os.path.join(config.output_root, "info"), exist_ok=True)
     print(
         f"train sample: {len(train_nusc_infos)}, val sample: {len(val_nusc_infos)}, test sample: {len(test_nusc_infos)}"

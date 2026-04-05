@@ -12,7 +12,6 @@ import torch
 from pointcept.utils.cache import shared_dict
 from .builder import DATASETS
 from .defaults import DefaultDataset
-import numpy as np
 from scipy.spatial import cKDTree
 
 

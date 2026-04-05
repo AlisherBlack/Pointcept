@@ -27,7 +27,6 @@ try:
     import pointrope as _kernels
 
     class PointROPE_func(torch.autograd.Function):
-
         @staticmethod
         def forward(ctx, tokens, positions, base, F0=1):
             ctx.save_for_backward(positions)
@@ -64,7 +63,6 @@ except Exception as e:
     )
 
     class PointROPE(torch.nn.Module):
-
         def __init__(self, freq=100.0, F0=1.0):
             super().__init__()
             self.base = freq
@@ -103,9 +101,9 @@ except Exception as e:
             output:
                 * tokens after appplying PointROPE (batch_size x nheads x ntokens x dim)
             """
-            assert (
-                tokens.size(3) % 3 == 0
-            ), "number of dimensions should be a multiple of three"
+            assert tokens.size(3) % 3 == 0, (
+                "number of dimensions should be a multiple of three"
+            )
             D = tokens.size(3) // 3
             assert positions.ndim == 3 and positions.shape[-1] == 3  # Batch, Seq, 3
             if max_seqlen == None:
@@ -215,7 +213,6 @@ class PointROPEAttention(PointModule):
         return point[pad_key], point[unpad_key], point[cu_seqlens_key]
 
     def forward(self, point):
-
         H = self.num_heads
         K = self.patch_size
         C = self.channels

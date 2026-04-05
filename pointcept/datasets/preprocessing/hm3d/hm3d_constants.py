@@ -1,4 +1,3 @@
-from pathlib import Path
 
 CLASS_LABELS_40 = (
     "wall",  # 0

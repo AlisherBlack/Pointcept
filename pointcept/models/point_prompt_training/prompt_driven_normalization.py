@@ -1,6 +1,6 @@
 import torch.nn as nn
 
-from pointcept.models.modules import PointModule, PointSequential
+from pointcept.models.modules import PointModule
 from pointcept.models.builder import MODULES
 
 

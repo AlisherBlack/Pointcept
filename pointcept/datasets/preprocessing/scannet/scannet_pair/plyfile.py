@@ -96,7 +96,7 @@ def make2d(array, cols=None, dtype=None):
 
     """
     if (cols is None or dtype is None) and not len(array):
-        raise RuntimeError("cols and dtype must be specified for empty " "array")
+        raise RuntimeError("cols and dtype must be specified for empty array")
 
     if cols is None:
         cols = len(array[0])
@@ -339,7 +339,7 @@ class PlyData(object):
         return self.header
 
     def __repr__(self):
-        return "PlyData(%r, text=%r, byte_order=%r, " "comments=%r, obj_info=%r)" % (
+        return "PlyData(%r, text=%r, byte_order=%r, comments=%r, obj_info=%r)" % (
             self.elements,
             self.text,
             self.byte_order,
@@ -511,7 +511,7 @@ class PlyElement(object):
             raise TypeError("only numpy arrays are supported")
 
         if len(data.shape) != 1:
-            raise ValueError("only one-dimensional arrays are " "supported")
+            raise ValueError("only one-dimensional arrays are supported")
 
         count = len(data)
 
@@ -531,7 +531,7 @@ class PlyElement(object):
 
                 if t[1][1] == "O":
                     if len(t) != 2:
-                        raise ValueError("non-scalar object fields not " "supported")
+                        raise ValueError("non-scalar object fields not supported")
 
                 len_str = _data_type_reverse[len_types.get(t[0], "u1")]
                 if t[1][1] == "O":
@@ -732,17 +732,17 @@ class PlyProperty(object):
 
         if line[1] == "list":
             if len(line) > 5:
-                raise PlyParseError("too many fields after " "'property list'")
+                raise PlyParseError("too many fields after 'property list'")
             if len(line) < 5:
-                raise PlyParseError("too few fields after " "'property list'")
+                raise PlyParseError("too few fields after 'property list'")
 
             return PlyListProperty(line[4], line[2], line[3])
 
         else:
             if len(line) > 3:
-                raise PlyParseError("too many fields after " "'property'")
+                raise PlyParseError("too many fields after 'property'")
             if len(line) < 3:
-                raise PlyParseError("too few fields after " "'property'")
+                raise PlyParseError("too few fields after 'property'")
 
             return PlyProperty(line[2], line[1])
 

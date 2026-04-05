@@ -45,8 +45,10 @@ class ClsEvaluator(HookBase):
                 self.trainer.cfg.data.ignore_index,
             )
             if comm.get_world_size() > 1:
-                dist.all_reduce(intersection), dist.all_reduce(union), dist.all_reduce(
-                    target
+                (
+                    dist.all_reduce(intersection),
+                    dist.all_reduce(union),
+                    dist.all_reduce(target),
                 )
             intersection, union, target = (
                 intersection.cpu().numpy(),
@@ -59,8 +61,7 @@ class ClsEvaluator(HookBase):
             self.trainer.storage.put_scalar("val_target", target)
             self.trainer.storage.put_scalar("val_loss", loss.item())
             self.trainer.logger.info(
-                "Test: [{iter}/{max_iter}] "
-                "Loss {loss:.4f} ".format(
+                "Test: [{iter}/{max_iter}] Loss {loss:.4f} ".format(
                     iter=i + 1, max_iter=len(self.trainer.val_loader), loss=loss.item()
                 )
             )
@@ -151,8 +152,10 @@ class SemSegEvaluator(HookBase):
                 self.trainer.cfg.data.ignore_index,
             )
             if comm.get_world_size() > 1:
-                dist.all_reduce(intersection), dist.all_reduce(union), dist.all_reduce(
-                    target
+                (
+                    dist.all_reduce(intersection),
+                    dist.all_reduce(union),
+                    dist.all_reduce(target),
                 )
             intersection, union, target = (
                 intersection.cpu().numpy(),
@@ -585,8 +588,7 @@ class InsSegEvaluator(HookBase):
 
             self.trainer.storage.put_scalar("val_loss", loss.item())
             self.trainer.logger.info(
-                "Test: [{iter}/{max_iter}] "
-                "Loss {loss:.4f} ".format(
+                "Test: [{iter}/{max_iter}] Loss {loss:.4f} ".format(
                     iter=i + 1, max_iter=len(self.trainer.val_loader), loss=loss.item()
                 )
             )
@@ -686,9 +688,9 @@ class ShapeNetPartSegEvaluator(HookBase):
             cls_token = input_dict["cls_token"][0].cpu().numpy()
 
             if "inverse" in input_dict.keys():
-                assert (
-                    "origin_segment" in input_dict.keys()
-                ), "origin_segment must be provided with inverse"
+                assert "origin_segment" in input_dict.keys(), (
+                    "origin_segment must be provided with inverse"
+                )
                 pred_labels = pred_labels[input_dict["inverse"]]
                 segment = input_dict["origin_segment"]
 
@@ -832,9 +834,9 @@ class PartNetEPartSegEvaluator(HookBase):
             # pred_labels = torch.argmax(pred_scores[:, parts_idx], dim=-1)
 
             if "inverse" in input_dict.keys():
-                assert (
-                    "origin_segment" in input_dict.keys()
-                ), "origin_segment must be provided with inverse"
+                assert "origin_segment" in input_dict.keys(), (
+                    "origin_segment must be provided with inverse"
+                )
                 pred_labels = pred_labels[input_dict["inverse"]]
                 segment = input_dict["origin_segment"]
 

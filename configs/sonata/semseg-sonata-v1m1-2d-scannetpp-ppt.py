@@ -63,7 +63,7 @@ model = dict(
     template="[x]",
     clip_model="ViT-B/16",
     # fmt: off
-    class_names = [
+    class_names=[
         CLASS_LABELS_200,
         [
             "wall",

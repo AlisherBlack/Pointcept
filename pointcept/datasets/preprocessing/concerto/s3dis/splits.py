@@ -48,14 +48,14 @@ def get_splits_paths(dataset_path):
                     for f in png_files
                 ]
                 for i in range(0, len(png_file_paths), 4):
-                    split_dict[f"{name}_{cam_name}_{i//4}"] = {}
-                    split_dict[f"{name}_{cam_name}_{i//4}"]["pointclouds"] = (
+                    split_dict[f"{name}_{cam_name}_{i // 4}"] = {}
+                    split_dict[f"{name}_{cam_name}_{i // 4}"]["pointclouds"] = (
                         os.path.join(pc_split_path, name)
                     )
-                    split_dict[f"{name}_{cam_name}_{i//4}"]["images"] = png_file_paths[
-                        i : i + 4
-                    ]
-                    split_dict[f"{name}_{cam_name}_{i//4}"]["correspondences"] = (
+                    split_dict[f"{name}_{cam_name}_{i // 4}"]["images"] = (
+                        png_file_paths[i : i + 4]
+                    )
+                    split_dict[f"{name}_{cam_name}_{i // 4}"]["correspondences"] = (
                         co_file_paths[i : i + 4]
                     )
         with open(os.path.join(split_path, f"{split}.json"), "w") as f:

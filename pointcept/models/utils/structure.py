@@ -6,14 +6,11 @@ try:
 except ImportError:
     ocnn = None
 from addict import Dict
-from typing import List
 
 from pointcept.models.utils.serialization import encode
 from pointcept.models.utils import (
     offset2batch,
     batch2offset,
-    offset2bincount,
-    bincount2offset,
 )
 
 
@@ -154,9 +151,9 @@ class Point(Dict):
         Generate octree with OCNN
         relay on ["grid_coord", "batch", "feat"]
         """
-        assert (
-            ocnn is not None
-        ), "Please follow https://github.com/octree-nn/ocnn-pytorch install ocnn."
+        assert ocnn is not None, (
+            "Please follow https://github.com/octree-nn/ocnn-pytorch install ocnn."
+        )
         assert {"feat", "batch"}.issubset(self.keys())
         # add 1 to make grid space support shift order
         if "grid_coord" not in self.keys():

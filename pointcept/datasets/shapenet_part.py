@@ -10,9 +10,7 @@ Please cite our work if the code is helpful to you.
 
 import os
 import json
-import torch
 import numpy as np
-from copy import deepcopy
 
 from pointcept.utils.logger import get_root_logger
 from .builder import DATASETS

@@ -12,7 +12,6 @@ import time
 import numpy as np
 from collections import OrderedDict
 import torch
-import torch.distributed as dist
 import torch.nn.functional as F
 import torch.utils.data
 
@@ -185,8 +184,9 @@ class SemSegTester(TesterBase):
                 pred = torch.zeros((segment.size, self.cfg.data.num_classes)).cuda()
                 for i in range(len(fragment_list)):
                     fragment_batch_size = 1
-                    s_i, e_i = i * fragment_batch_size, min(
-                        (i + 1) * fragment_batch_size, len(fragment_list)
+                    s_i, e_i = (
+                        i * fragment_batch_size,
+                        min((i + 1) * fragment_batch_size, len(fragment_list)),
                     )
                     input_dict = collate_fn(fragment_list[s_i:e_i])
                     for key in input_dict.keys():
@@ -427,8 +427,9 @@ class DINOSemSegTester(TesterBase):
                 pred = torch.zeros((segment.size, self.cfg.data.num_classes)).cuda()
                 for i in range(len(fragment_list)):
                     fragment_batch_size = 1
-                    s_i, e_i = i * fragment_batch_size, min(
-                        (i + 1) * fragment_batch_size, len(fragment_list)
+                    s_i, e_i = (
+                        i * fragment_batch_size,
+                        min((i + 1) * fragment_batch_size, len(fragment_list)),
                     )
                     input_dict = collate_fn(fragment_list[s_i:e_i])
                     for key in input_dict.keys():
@@ -659,9 +660,11 @@ class ClsTester(TesterBase):
                 union.cpu().numpy(),
                 target.cpu().numpy(),
             )
-            intersection_meter.update(intersection), union_meter.update(
-                union
-            ), target_meter.update(target)
+            (
+                intersection_meter.update(intersection),
+                union_meter.update(union),
+                target_meter.update(target),
+            )
 
             accuracy = sum(intersection_meter.val) / (sum(target_meter.val) + 1e-10)
             batch_time.update(time.time() - end)
@@ -874,8 +877,9 @@ class ShapeNetPartSegTester(TesterBase):
                 pred = torch.zeros((segment.size, self.cfg.data.num_classes)).cuda()
                 for i in range(len(fragment_list)):
                     fragment_batch_size = 1
-                    s_i, e_i = i * fragment_batch_size, min(
-                        (i + 1) * fragment_batch_size, len(fragment_list)
+                    s_i, e_i = (
+                        i * fragment_batch_size,
+                        min((i + 1) * fragment_batch_size, len(fragment_list)),
                     )
                     input_dict = collate_fn(fragment_list[s_i:e_i])
                     for key in input_dict.keys():
@@ -1031,8 +1035,9 @@ class PartNetEPartSegTester(TesterBase):
                 pred = torch.zeros((segment.size, self.cfg.data.num_classes)).cuda()
                 for i in range(len(fragment_list)):
                     fragment_batch_size = 1
-                    s_i, e_i = i * fragment_batch_size, min(
-                        (i + 1) * fragment_batch_size, len(fragment_list)
+                    s_i, e_i = (
+                        i * fragment_batch_size,
+                        min((i + 1) * fragment_batch_size, len(fragment_list)),
                     )
                     input_dict = collate_fn(fragment_list[s_i:e_i])
                     for key in input_dict.keys():

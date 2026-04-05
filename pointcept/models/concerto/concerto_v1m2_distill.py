@@ -14,7 +14,7 @@ import torch.nn.functional as F
 import torch.distributed as dist
 import torch_scatter
 from timm.layers import trunc_normal_
-from transformers import AutoModel, AutoProcessor
+from transformers import AutoModel
 from copy import deepcopy
 
 import pointops

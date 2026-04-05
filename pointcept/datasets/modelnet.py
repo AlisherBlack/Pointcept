@@ -14,7 +14,6 @@ import copy
 import pointops
 import torch
 from torch.utils.data import Dataset
-from copy import deepcopy
 
 
 from pointcept.utils.logger import get_root_logger

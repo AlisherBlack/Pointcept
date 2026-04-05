@@ -9,14 +9,12 @@ Please cite our work if the code is helpful to you.
 
 import os
 import glob
-import numpy as np
 import torch
-from copy import deepcopy
 from torch.utils.data import Dataset
 
 from pointcept.utils.logger import get_root_logger
 from .builder import DATASETS
-from .transform import Compose, TRANSFORMS
+from .transform import Compose
 
 
 @DATASETS.register_module()
@@ -28,7 +26,7 @@ class ScanNetPairDataset(Dataset):
         view1_transform=None,
         view2_transform=None,
         loop=1,
-        **kwargs
+        **kwargs,
     ):
         super(ScanNetPairDataset, self).__init__()
         self.data_root = data_root

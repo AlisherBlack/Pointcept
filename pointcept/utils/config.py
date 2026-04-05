@@ -39,7 +39,7 @@ class ConfigDict(Dict):
             value = super(ConfigDict, self).__getattr__(name)
         except KeyError:
             ex = AttributeError(
-                f"'{self.__class__.__name__}' object has no " f"attribute '{name}'"
+                f"'{self.__class__.__name__}' object has no attribute '{name}'"
             )
         except Exception as e:
             ex = e
@@ -100,9 +100,7 @@ class Config:
         try:
             ast.parse(content)
         except SyntaxError as e:
-            raise SyntaxError(
-                "There are syntax errors in config " f"file {filename}: {e}"
-            )
+            raise SyntaxError(f"There are syntax errors in config file {filename}: {e}")
 
     @staticmethod
     def _substitute_predefined_vars(filename, temp_config_name):
@@ -222,14 +220,13 @@ class Config:
         if DEPRECATION_KEY in cfg_dict:
             deprecation_info = cfg_dict.pop(DEPRECATION_KEY)
             warning_msg = (
-                f"The config file {filename} will be deprecated " "in the future."
+                f"The config file {filename} will be deprecated in the future."
             )
             if "expected" in deprecation_info:
-                warning_msg += f' Please use {deprecation_info["expected"]} ' "instead."
+                warning_msg += f" Please use {deprecation_info['expected']} instead."
             if "reference" in deprecation_info:
                 warning_msg += (
-                    " More information can be found at "
-                    f'{deprecation_info["reference"]}'
+                    f" More information can be found at {deprecation_info['reference']}"
                 )
             warnings.warn(warning_msg)
 
@@ -380,7 +377,7 @@ class Config:
         if cfg_dict is None:
             cfg_dict = dict()
         elif not isinstance(cfg_dict, dict):
-            raise TypeError("cfg_dict must be a dict, but " f"got {type(cfg_dict)}")
+            raise TypeError(f"cfg_dict must be a dict, but got {type(cfg_dict)}")
         for key in cfg_dict:
             if key in RESERVED_KEYS:
                 raise KeyError(f"{key} is reserved for config file")

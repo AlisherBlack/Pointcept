@@ -6,9 +6,8 @@
 import copy
 import torch
 import numpy as np
-import math
-import glob, os
-import argparse
+import glob
+import os
 import open3d as o3d
 
 

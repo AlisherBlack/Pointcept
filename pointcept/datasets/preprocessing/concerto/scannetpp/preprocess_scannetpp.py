@@ -13,7 +13,6 @@ import json
 import torch
 import shutil
 import os
-import torch
 import camtools as ct
 import open3d as o3d
 from scipy.spatial import cKDTree

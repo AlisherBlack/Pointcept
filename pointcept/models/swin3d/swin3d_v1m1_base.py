@@ -7,7 +7,7 @@ from timm.layers import trunc_normal_
 from .mink_layers import MinkConvBNRelu, MinkResBlock
 from .swin3d_layers import GridDownsample, GridKNNDownsample, BasicLayer, Upsample
 from pointcept.models.builder import MODELS
-from pointcept.models.utils import offset2batch, batch2offset
+from pointcept.models.utils import offset2batch
 
 
 @MODELS.register_module("Swin3D-v1m1")

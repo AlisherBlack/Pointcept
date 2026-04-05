@@ -6,7 +6,6 @@ Please cite our work if the code is helpful to you.
 """
 
 import torch
-from itertools import chain
 
 
 @torch.no_grad()

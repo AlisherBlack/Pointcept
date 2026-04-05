@@ -1,10 +1,5 @@
 import torch
-import pointops
 from torch_scatter import (
-    scatter_max,
-    scatter_mean,
-    scatter_add,
-    scatter_min,
     scatter_sum,
 )
 

@@ -15,7 +15,6 @@ import torch.utils.data
 from packaging import version
 from functools import partial
 from pathlib import Path
-import itertools
 
 if sys.version_info >= (3, 10):
     from collections.abc import Iterator

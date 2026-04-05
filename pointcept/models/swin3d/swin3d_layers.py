@@ -16,7 +16,6 @@ from Swin3D.sparse_dl.attn.attn_coff import (
     IndexMode,
     PrecisionMode,
 )
-import Swin3D.sparse_dl.knn
 from Swin3D.sparse_dl.knn import KNN
 
 from .mink_layers import (

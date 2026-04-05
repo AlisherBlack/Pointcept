@@ -66,7 +66,7 @@ def handle_process(obj_file_paths, output_directory):
             pcd.colors = o3d.utility.Vector3dVector(colors)
             pcd.normals = o3d.utility.Vector3dVector(normals)
             print(
-                f"\nSampled point cloud saved to: {str(output_directory/parent_name)}"
+                f"\nSampled point cloud saved to: {str(output_directory / parent_name)}"
             )
         except:
             print(f"fail {parent_name}")

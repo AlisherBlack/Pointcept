@@ -9,7 +9,6 @@ Please cite our work if the code is helpful to you.
 
 from functools import partial
 from copy import deepcopy
-import math
 import torch
 import torch.nn as nn
 from torch.utils.checkpoint import checkpoint

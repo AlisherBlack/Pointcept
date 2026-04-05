@@ -148,9 +148,10 @@ class TransitionDown(nn.Module):
         self.pool = nn.MaxPool1d(k)
 
     def forward(self, feats, xyz, offset):
-        n_offset, count = [int(offset[0].item() * self.ratio) + 1], int(
-            offset[0].item() * self.ratio
-        ) + 1
+        n_offset, count = (
+            [int(offset[0].item() * self.ratio) + 1],
+            int(offset[0].item() * self.ratio) + 1,
+        )
         for i in range(1, offset.shape[0]):
             count += ((offset[i].item() - offset[i - 1].item()) * self.ratio) + 1
             n_offset.append(count)
@@ -472,9 +473,10 @@ class BasicLayer(nn.Module):
         )
 
         downsample_scale = self.downsample_scale
-        new_offset, count = [offset[0].item() // downsample_scale + 1], offset[
-            0
-        ].item() // downsample_scale + 1
+        new_offset, count = (
+            [offset[0].item() // downsample_scale + 1],
+            offset[0].item() // downsample_scale + 1,
+        )
         for i in range(1, offset.shape[0]):
             count += (offset[i].item() - offset[i - 1].item()) // downsample_scale + 1
             new_offset.append(count)
@@ -674,9 +676,9 @@ class StratifiedTransformer(nn.Module):
         kp_max_neighbor=34,
     ):
         super().__init__()
-        assert (
-            KPConvLayer is not None and FastBatchNorm1d is not None
-        ), "Please make sure torch_points3d is installed"
+        assert KPConvLayer is not None and FastBatchNorm1d is not None, (
+            "Please make sure torch_points3d is installed"
+        )
         assert tp is not None, "Please make sure torch_points_kernels is installed"
         assert pointops is not None, "Please make sure pointops2 is installed"
 

@@ -40,7 +40,7 @@ def _argparse(pattern, argv, is_flag=True, is_list=False):
 
 INCLUDE_DIRS, argv = _argparse("--include_dirs", argv, False, is_list=True)
 include_dirs = []
-if not (INCLUDE_DIRS is False):
+if INCLUDE_DIRS is not False:
     include_dirs += INCLUDE_DIRS
 
 setup(

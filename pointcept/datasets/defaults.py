@@ -544,9 +544,10 @@ class DefaultMultiViewImagePointDataset(DefaultImagePointDataset):
             v, u = np.indices((h, w))
             valid_mask = (depth_m > 0) & (depth_m < 0.8)
             z_cam = depth_m[valid_mask]
-            x_cam, y_cam = (u[valid_mask] - cx) * z_cam / fx, (
-                v[valid_mask] - cy
-            ) * z_cam / fy
+            x_cam, y_cam = (
+                (u[valid_mask] - cx) * z_cam / fx,
+                (v[valid_mask] - cy) * z_cam / fy,
+            )
             points_cam = np.vstack((x_cam, y_cam, z_cam)).T
             points_world = (
                 cam_pose_world

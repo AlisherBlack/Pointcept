@@ -14,7 +14,6 @@ from pathlib import Path
 import multiprocessing as mp
 from concurrent.futures import ProcessPoolExecutor
 from itertools import repeat
-from pathlib import Path
 
 from hm3d_constants import CLASS_LABELS_40
 

@@ -39,9 +39,9 @@ def get_event_storage():
         The :class:`EventStorage` object that's currently being used.
         Throws an error if no :class:`EventStorage` is currently enabled.
     """
-    assert len(
-        _CURRENT_STORAGE_STACK
-    ), "get_event_storage() has to be called inside a 'with EventStorage(...)' context!"
+    assert len(_CURRENT_STORAGE_STACK), (
+        "get_event_storage() has to be called inside a 'with EventStorage(...)' context!"
+    )
     return _CURRENT_STORAGE_STACK[-1]
 
 
@@ -344,9 +344,9 @@ class EventStorage:
 
         existing_hint = self._smoothing_hints.get(name)
         if existing_hint is not None:
-            assert (
-                existing_hint == smoothing_hint
-            ), "Scalar {} was put with a different smoothing_hint!".format(name)
+            assert existing_hint == smoothing_hint, (
+                "Scalar {} was put with a different smoothing_hint!".format(name)
+            )
         else:
             self._smoothing_hints[name] = smoothing_hint
 
@@ -597,7 +597,6 @@ class HistoryBuffer:
 
 
 class ExceptionWriter:
-
     def __init__(self):
         self.logger = logging.getLogger(__name__)
 

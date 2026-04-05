@@ -17,7 +17,6 @@ import multiprocessing as mp
 from concurrent.futures import ProcessPoolExecutor
 from itertools import repeat
 from pathlib import Path
-import torch
 
 MATTERPORT_CLASS_REMAP = np.zeros(41)
 MATTERPORT_CLASS_REMAP[1] = 1

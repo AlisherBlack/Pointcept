@@ -211,7 +211,6 @@ def get_navmesh_extents_at_y(
 def get_dense_navmesh_vertices(
     sim: habitat_sim.Simulator, sampling_resolution: float = 0.5
 ) -> np.ndarray:
-
     navmesh_vertices = []
     floor_extents = get_floor_heights(sim)
     for fext in floor_extents:

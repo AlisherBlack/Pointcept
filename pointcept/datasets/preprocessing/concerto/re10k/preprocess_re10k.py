@@ -19,7 +19,6 @@ import cv2
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 import open3d as o3d
-from torchvision.utils import save_image
 
 from vggt.models.vggt import VGGT
 from vggt.utils.pose_enc import pose_encoding_to_extri_intri

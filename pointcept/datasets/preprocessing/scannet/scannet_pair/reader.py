@@ -1,5 +1,4 @@
-import argparse
-import os, sys
+import os
 
 from SensorData import SensorData
 
