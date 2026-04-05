@@ -22,7 +22,7 @@ def main_worker(cfg):
 
 def main():
     args = default_argument_parser().parse_args()
-    cfg = default_config_parser(args.config_file, args.options)
+    cfg = default_config_parser(args.config_file, args.options, args.data_root)
 
     launch(
         main_worker,

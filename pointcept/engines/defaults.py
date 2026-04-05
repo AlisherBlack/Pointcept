@@ -103,10 +103,16 @@ def default_argument_parser(epilog=None):
     parser.add_argument(
         "--options", nargs="+", action=DictAction, help="custom options"
     )
+    parser.add_argument(
+        "--data-root",
+        default=None,
+        metavar="DIR",
+        help="override data root directory for all dataset splits",
+    )
     return parser
 
 
-def default_config_parser(file_path, options):
+def default_config_parser(file_path, options, data_root=None):
     # config name protocol: dataset_name/model_name-exp_name
     if os.path.isfile(file_path):
         cfg = Config.fromfile(file_path)
@@ -116,6 +122,13 @@ def default_config_parser(file_path, options):
 
     if options is not None:
         cfg.merge_from_dict(options)
+
+    if data_root is not None:
+        cfg.merge_from_dict({
+            "data.train.data_root": data_root,
+            "data.val.data_root": data_root,
+            "data.test.data_root": data_root,
+        })
 
     if cfg.seed is None:
         cfg.seed = get_random_seed()
