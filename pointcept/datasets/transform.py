@@ -1283,9 +1283,9 @@ class MultiViewGenerator(object):
                     view_dict[f"global_{key}"].append(global_view[key])
                 else:
                     view_dict[f"global_{key}"] = [global_view[key]]
-        view_dict["global_offset"] = np.cumsum(
-            [data.shape[0] for data in view_dict["global_coord"]]
-        )
+        view_dict["global_offset"] = np.cumsum([
+            data.shape[0] for data in view_dict["global_coord"]
+        ])
         for local_view in local_views:
             local_view.pop("index")
             local_view = self.local_transform(local_view)
@@ -1294,9 +1294,9 @@ class MultiViewGenerator(object):
                     view_dict[f"local_{key}"].append(local_view[key])
                 else:
                     view_dict[f"local_{key}"] = [local_view[key]]
-        view_dict["local_offset"] = np.cumsum(
-            [data.shape[0] for data in view_dict["local_coord"]]
-        )
+        view_dict["local_offset"] = np.cumsum([
+            data.shape[0] for data in view_dict["local_coord"]
+        ])
 
         for key in view_dict.keys():
             if "offset" not in key:
@@ -1346,9 +1346,12 @@ class InstanceParser(object):
             bbox_class -= np.greater(bbox_class, vacancy).sum()
 
             centroid[mask_] = bbox_centroid
-            bbox[instance_id] = np.concatenate(
-                [bbox_center, bbox_size, bbox_theta, bbox_class]
-            )  # 3 + 3 + 1 + 1 = 8
+            bbox[instance_id] = np.concatenate([
+                bbox_center,
+                bbox_size,
+                bbox_theta,
+                bbox_class,
+            ])  # 3 + 3 + 1 + 1 = 8
         data_dict["instance"] = instance
         data_dict["instance_centroid"] = centroid
         data_dict["bbox"] = bbox

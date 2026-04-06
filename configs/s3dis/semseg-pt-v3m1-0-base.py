@@ -184,9 +184,9 @@ data = dict(
                 ),
             ],
             aug_transform=[
-                [dict(type="RandomScale", scale=[0.9, 0.9])],
+                # [dict(type="RandomScale", scale=[0.9, 0.9])],
                 # [dict(type="RandomScale", scale=[0.95, 0.95])],
-                # [dict(type="RandomScale", scale=[1, 1])],
+                [dict(type="RandomScale", scale=[1, 1])],
                 # [dict(type="RandomScale", scale=[1.05, 1.05])],
                 # [dict(type="RandomScale", scale=[1.1, 1.1])],
                 # [
