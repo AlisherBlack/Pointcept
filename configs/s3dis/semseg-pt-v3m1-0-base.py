@@ -34,7 +34,7 @@ model = dict(
         shuffle_orders=True,
         pre_norm=True,
         enable_rpe=False,
-        enable_flash=False,
+        enable_flash=True,
         upcast_attention=False,
         upcast_softmax=False,
         enc_mode=False,
@@ -66,7 +66,7 @@ param_dicts = [dict(keyword="block", lr=0.0006)]
 
 # dataset settings
 dataset_type = "S3DISDataset"
-data_root = "/home/alisherblack/stuff/sonata/cache/s3dis-compressed-sanity-check"
+data_root = None
 
 data = dict(
     num_classes=13,
@@ -117,7 +117,7 @@ data = dict(
                 return_grid_coord=True,
             ),
             dict(type="SphereCrop", sample_rate=0.6, mode="random"),
-            dict(type="SphereCrop", point_max=40800, mode="random"),
+            dict(type="SphereCrop", point_max=204800, mode="random"),
             dict(type="CenterShift", apply_z=False),
             dict(type="NormalizeColor"),
             # dict(type="ShufflePoint"),
@@ -139,7 +139,7 @@ data = dict(
             dict(type="Copy", keys_dict={"segment": "origin_segment"}),
             dict(
                 type="GridSample",
-                grid_size=0.1,
+                grid_size=0.02,
                 hash_type="fnv",
                 mode="train",
                 return_grid_coord=True,

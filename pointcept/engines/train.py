@@ -8,7 +8,6 @@ Please cite our work if the code is helpful to you.
 import os
 import sys
 import weakref
-import wandb
 import torch
 import torch.nn as nn
 import torch.utils.data
@@ -269,6 +268,8 @@ class Trainer(TrainerBase):
         writer = SummaryWriter(self.cfg.save_path) if comm.is_main_process() else None
         self.logger.info(f"Tensorboard writer logging dir: {self.cfg.save_path}")
         if self.cfg.enable_wandb and comm.is_main_process():
+            import wandb
+
             tag, name = Path(self.cfg.save_path).parts[-2:]
             wandb.init(
                 project=self.cfg.wandb_project,
